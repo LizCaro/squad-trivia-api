@@ -1,89 +1,68 @@
+import Method from "./Method.js";
+
+let questionsAll=[]
+ let currentQuestion = 0;
 export default class UI {
     static printCategories(categories){
+        console.log(categories)
         const container = document.getElementById('categories');
         categories.forEach(category => {
             container.innerHTML += `<option value="${category.id}">${category.name}</option>`;
         });
     }
-    static printQuestions(answers){
-        const questionItem =document.getElementById('question-item');
-            answers.forEach(element=>{
-            questionItem.innerHTML=<h4 id="question-item"></h4>
+    static getElements(loadElements) {
 
-            })
-        // const a_text =document.getElementById('a_text');
-        // const b_text =document.getElementById('b_text');
-        // const c_text =document.getElementById('c_text');
-        // const d_text =document.getElementById('d_text');
-        // const nextQuestions = document.getElementById('next-questions');
+        loadElements.forEach(element=>{
+            const questionChoices=element.question
+            const answerChoices=[...element.incorrect_answers]
         
+            answerChoices.splice(Math.floor(Math.random() * 4) -1, 0, element.correct_answer)
+            questionsAll.push(questionChoices)
+            questionsAll.push(answerChoices)
+    
+        })
+        this.printQuestions()
+
+    }
+    static printQuestions(){
         
 
-    //     let quesitonsAll = []
+          this.questionsItem =document.getElementById('question-item');  
+          this.a_text =document.getElementById('a_text');
+          this.b_text =document.getElementById('b_text');
+          this.c_text =document.getElementById('c_text');
+          this.d_text =document.getElementById('d_text');
+         
+        for (let i = 0; i < questionsAll.length; i++) {
+            console.log(questionsAll[0])
+            this.questionsItem.innerHTML = questionsAll[0]
+            this.a_text.innerHTML = questionsAll[1][0]
+            this.b_text.innerHTML = questionsAll[1][1]
+            this.c_text.innerHTML = questionsAll[1][2]
+            this.d_text.innerHTML = questionsAll[1][3]   
+        } 
+    }
+    static nextQuestion() {
+        console.log(questionsAll)
+        Method.count()
+        Method.cheked()
+        Method.finishBtn()
 
-    //     answers.forEach((element) => {
-    //         const questionsChoices = element.question
-    //         const answerChoices = [...element.incorrect_answers]
-            
-    //         answerChoices.splice(Math.floor(Math.random() * 4) - 1, 0, element.correct_answer)
-    //         quesitonsAll.push(questionsChoices)
-    //         quesitonsAll.push(answerChoices)
+        currentQuestion++
 
-    //     })
+        this.questionsItem.innerHTML = questionsAll[currentQuestion++ + 1];
+        this.a_text.innerHTML = questionsAll[currentQuestion+ 1][0]
+        this.b_text.innerHTML = questionsAll[currentQuestion+ 1][1]
+        this.c_text.innerHTML = questionsAll[currentQuestion+ 1][2]
+        this.d_text.innerHTML = questionsAll[currentQuestion+ 1][3]
+
+        Method.comproved()
         
-    //     for (let i = 0; i < quesitonsAll.length; i++) {
-    //             questionItem.innerText = quesitonsAll[0]
-    //             a_text.innerText = quesitonsAll[1][0]
-    //             b_text.innerText = quesitonsAll[1][1]
-    //             c_text.innerText = quesitonsAll[1][2]
-    //             d_text.innerText = quesitonsAll[1][3]   
-    //     } 
+    }
+    // funcion del boton finalizar
+    // mostrar los resultados de las respuestas correctas e incorrectas
+    // quitar el campo de preguntas hasta que de iniciar
+    // boton de cancelar
+    // las buenas noches!!!!! x10.000.000.000.000.000.000.000.000.000rem
 
-
-    //     let selectedAnswers = []
-    //     let currentQuestion = 0;
-    //     let contNumNext = 1;
-    //     nextQuestions.addEventListener('click', () => {
-    //         currentQuestion++
-    //         const rbs = document.querySelectorAll('input[name="answer"]')
-    //         let selecetValue;
-
-            
-    //         for (const rb of rbs) {
-    //             if(rb.checked) {
-    //             document.getElementById('a').setAttribute('value', a_text.innerText)
-    //             document.getElementById('b').setAttribute('value', b_text.innerText)
-    //             document.getElementById('c').setAttribute('value', c_text.innerText)
-    //             document.getElementById('d').setAttribute('value', d_text.innerText)
-    //             selecetValue = rb.value
-    //             selectedAnswers.push(selecetValue)
-    //             console.log(selectedAnswers)
-    //             // rb.checked = false;
-                
-    //             }
-    //         }
-    //         const totalQuestions = document.getElementById('total-questions').value;
-
-    //         if (contNumNext === totalQuestions - 1) {
-    //             nextQuestions.innerText = 'Finish'
-    //         }
-
-    //         questionItem.innerText = quesitonsAll[currentQuestion++ + 1];    
-            
-    //         if (a_text.innerText = quesitonsAll[currentQuestion+ 1]) {
-    //             a_text.innerText = quesitonsAll[currentQuestion+ 1][0]
-    //             b_text.innerText = quesitonsAll[currentQuestion+ 1][1]
-    //             c_text.innerText = quesitonsAll[currentQuestion+ 1][2]
-    //             d_text.innerText = quesitonsAll[currentQuestion+ 1][3]
-
-    //             contNumNext++
-    //         } else {
-    //             alert('finish')
-    //         }
-            
-            
-    //     })
-    //     console.log(selectedAnswers)
-    //     console.log(quesitonsAll)
-     }
 }
