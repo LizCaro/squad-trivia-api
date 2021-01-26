@@ -3,8 +3,7 @@ import Method from "./Method.js";
 let questionsAll=[]
  let currentQuestion = 0;
 export default class UI {
-    static printCategories(categories){
-        console.log(categories)
+    static printCategories(categories){        
         const container = document.getElementById('categories');
         categories.forEach(category => {
             container.innerHTML += `<option value="${category.id}">${category.name}</option>`;
@@ -25,6 +24,12 @@ export default class UI {
 
     }
     static printQuestions(){
+        let containerNoQuestion = document.getElementById("no-question")
+        let containerCard = document.getElementById("questionss-container")
+        if (questionsAll == ""){
+           containerNoQuestion.innerHTML = '<h4 class="text-white">No hay preguntas</h4>'
+           containerCard.style.display = "none"            
+        }
         
 
           this.questionsItem =document.getElementById('question-item');  
@@ -43,7 +48,6 @@ export default class UI {
         } 
     }
     static nextQuestion() {
-        console.log(questionsAll)
         Method.count()
         Method.cheked()
         Method.finishBtn()
@@ -59,10 +63,12 @@ export default class UI {
         Method.comproved()
         
     }
-    // funcion del boton finalizar
-    // mostrar los resultados de las respuestas correctas e incorrectas
-    // quitar el campo de preguntas hasta que de iniciar
+
+
+
+    
+             
     // boton de cancelar
-    // las buenas noches!!!!! x10.000.000.000.000.000.000.000.000.000rem
+    
 
 }

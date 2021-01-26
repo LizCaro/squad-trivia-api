@@ -5,6 +5,10 @@ let points = 0
 let nextCorrects = 0
 
 export default class Method {
+    static showContainer() {
+        const questionsContainer = document.getElementById('questionss-container')
+        questionsContainer.style.display = "block"
+    }
     static getCorrects(answers) {
         answers.forEach(element => {
             const corrected = element.correct_answer
@@ -46,13 +50,26 @@ export default class Method {
     static finishBtn() {
         const totalQuestions = document.getElementById('total-questions').value;
         const nextQuestions = document.querySelector('#next-questions')
+        const finishQuestions = document.querySelector('#finish-questions')
 
         if (contNumNext === totalQuestions - 1) {
-            nextQuestions.innerHTML = 'Finish'
+            nextQuestions.style.display = 'none';
+            finishQuestions.style.display = 'inline-block'
             //this.result()
         
         }
     }
+    static printResults() {
+        const resultTrivia = document.getElementById('modal-body');
+        resultTrivia.innerHTML = `sacaste ${points} correctas de ${nextCorrects}`        
+
+        //alert(`sacaste ${points} correctas de ${totalQuestions}`)
+
+    //     <div class="alert alert-primary">
+    //     d
+    // </div>
+    }
+    
 
     // static result(){
     // console.log("total de puntaje"+points)
