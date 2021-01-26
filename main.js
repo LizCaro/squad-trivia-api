@@ -31,7 +31,7 @@ nextQuestions.addEventListener('click', () => {
 })
 finishQuestions.addEventListener('click', () => {
   Method.printResults()
-  location.reload()
+  //location.reload()
 })
 close.addEventListener('click',()=>{
   questionsContainer.style.display = "none"

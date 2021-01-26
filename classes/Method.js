@@ -61,7 +61,7 @@ export default class Method {
     }
     static printResults() {
         const resultTrivia = document.getElementById('modal-body');
-        resultTrivia.innerHTML = `sacaste ${points} correctas de ${nextCorrects}`        
+        resultTrivia.innerHTML = `sacaste ${points} correctas de ${nextCorrects+1}`        
 
         //alert(`sacaste ${points} correctas de ${totalQuestions}`)
 
